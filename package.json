@@ -1,0 +1,22 @@
+{
+    "name": "ppt2",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "dotenv": "^16.4.7",
+        "puppeteer": "^23.11.1",
+        "puppeteer-extra": "^3.3.6",
+        "puppeteer-extra-plugin-stealth": "^2.11.2",
+        "puppeteer-real-browser": "^1.3.22",
+        "puppeteer-xpath": "^0.1.0",
+        "tesseract.js": "^5.1.1"
+    }
+}
