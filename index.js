@@ -16,6 +16,7 @@ const startExress = () => {
 
 // use middlewares
 puppeteerx.use(StealthPlugin());
+console.log(puppeteerx.executablePath());
 
 // useful functions
 const wait = (time) =>
@@ -26,9 +27,12 @@ const main = async () => {
         // const browser = await puppeteerx.launch({ headless: false });
         // const page = await browser.newPage();
         const { browser, page } = await connect({
-            headless: true,
+            headless: false,
 
             args: [],
+            executablePath:
+                process.env.PUPPETEER_EXECUTABLE_PATH ||
+                puppeteerx.executablePath(), // Use Puppeteer's downloaded Chromium
 
             customConfig: {},
 
