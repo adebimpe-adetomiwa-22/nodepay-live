@@ -3,6 +3,17 @@ const puppeteerx = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { connect } = require('puppeteer-real-browser');
 
+// express
+const express = require('express');
+const port = process.env.PORT || 5000;
+
+const startExress = () => {
+    const app = express();
+    app.get('/', (req, res) => res.send('The nodepay is now live'));
+
+    app.listen(port);
+};
+
 // use middlewares
 puppeteerx.use(StealthPlugin());
 
@@ -15,7 +26,7 @@ const main = async () => {
         // const browser = await puppeteerx.launch({ headless: false });
         // const page = await browser.newPage();
         const { browser, page } = await connect({
-            headless: false,
+            headless: true,
 
             args: [],
 
@@ -36,7 +47,7 @@ const main = async () => {
         });
 
         await page.goto(process.env.NODEPAY_URL);
-        await wait(15);
+        await wait(20);
 
         await page.type(`#${process.env.EMAIL_ID}`, process.env.EMAIL);
         await page.type(`#${process.env.PASSWORD_ID}`, process.env.PASSWORD);
@@ -50,6 +61,7 @@ const start = async () => {
     try {
         await main();
         console.log('Page is ready');
+        startExress();
     } catch (error) {
         console.log(error);
     }
